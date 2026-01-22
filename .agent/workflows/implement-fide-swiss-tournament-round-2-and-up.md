@@ -29,6 +29,8 @@ These are the FIDE rules that have to be strictly followed and also have to be t
 Rule 1 and 9 are not part of this calculation.
 We will try to follow Rule 6 as strictly as possible.
 
+There is a more detailed description and rule set in .agent/fide-dutch-swiss-rules.md you should follow.
+
 Search the internet for implementation advice or already existing solutions you can copy.
 Always use the types in src/types.ts
 If you need to create new types add them locally but don't edit src/types.ts
