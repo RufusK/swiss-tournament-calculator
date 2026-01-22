@@ -1,1 +1,1 @@
-export { generateSwissPairings } from "./algorithms/swissPairing";
+export { calculateSwissPairings } from "./algorithms/calculateSwissPairings";

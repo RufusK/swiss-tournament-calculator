@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import {
+import type {
   TournamentState,
   PairingConstraints,
   Player,
@@ -113,8 +113,8 @@ describe("generateFirstRound - odd number of players", () => {
     expect(result.floats).toHaveLength(0);
 
     const bye = result.byes[0];
-    expect(bye.player).toBe("3"); // lowest-rated
-    expect(bye.round).toBe(1);
+    expect(bye?.player).toBe("3"); // lowest-rated
+    expect(bye?.round).toBe(1);
 
     // ensure bye player is not paired
     const pairedPlayers = result.pairings.flatMap((p) => [p.white, p.black]);
@@ -188,9 +188,9 @@ describe("generateFirstRound - odd number of players", () => {
     // - any unrated player
     // - OR the lowest-rated rated player
     const acceptableByePlayers = new Set(["u1", "4"]);
-    expect(acceptableByePlayers.has(bye.player)).toBe(true);
+    expect(acceptableByePlayers.has(bye!.player)).toBe(true);
 
     const pairedPlayers = result.pairings.flatMap((p) => [p.white, p.black]);
-    expect(pairedPlayers).not.toContain(bye.player);
+    expect(pairedPlayers).not.toContain(bye!.player);
   });
 });

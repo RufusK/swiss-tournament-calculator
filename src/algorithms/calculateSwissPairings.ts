@@ -1,7 +1,10 @@
 import { generateFirstRound } from "./firstRound";
-import type { generatePairings, PairingResult } from "./types";
+import type { calculatePairings, PairingResult } from "./types";
 
-export const generateSwissPairings: generatePairings = (state, constraints) => {
+export const calculateSwissPairings: calculatePairings = (
+  state,
+  constraints
+) => {
   // Placeholder implementation
   // Actual Swiss pairing logic would go here
 
@@ -16,4 +19,4 @@ export const generateSwissPairings: generatePairings = (state, constraints) => {
   };
 
   return pairings;
-}
+};

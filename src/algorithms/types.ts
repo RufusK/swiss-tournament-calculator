@@ -1,6 +1,6 @@
-export type generatePairings = (
+export type calculatePairings = (
   state: TournamentState,
-  constraints: PairingConstraints,
+  constraints: PairingConstraints
 ) => PairingResult;
 
 export type PlayerId = string;
