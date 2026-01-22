@@ -7,9 +7,10 @@
     "dist"
   ],
   "scripts": {
-    "build": "bunup",
-    "dev": "bunup --watch",
-    "type-check": "tsc --noEmit"
+    "build": "bunup src/index.ts",
+    "dev": "bunup src/index.ts --watch",
+    "type-check": "tsc --noEmit",
+    "test": "vitest dev"
   },
   "devDependencies": {
     "@types/bun": "^1.3.6",
@@ -35,5 +36,10 @@
     "./package.json": "./package.json"
   },
   "module": "./dist/index.js",
-  "types": "./dist/index.d.ts"
+  "types": "./dist/index.d.ts",
+  "dependencies": {
+    "@types/lodash-es": "^4.17.12",
+    "lodash-es": "^4.17.23",
+    "vitest": "^4.0.17"
+  }
 }
