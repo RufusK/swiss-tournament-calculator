@@ -43,6 +43,7 @@ describe("generateSwissPairings - First Round", () => {
       ],
       byes: [],
       nextRound: 2,
+      totalNumberOfRounds: 6,
     };
 
     const result = generateOtherRound(state);

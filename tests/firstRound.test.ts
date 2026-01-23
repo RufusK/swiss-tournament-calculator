@@ -26,6 +26,7 @@ describe("generateSwissPairings - First Round", () => {
       matches: [],
       byes: [],
       nextRound: 1,
+      totalNumberOfRounds: 6,
     };
 
     const result = generateFirstRound(state);
@@ -58,6 +59,7 @@ describe("generateFirstRound - odd number of players", () => {
       players,
       matches: [],
       byes: [],
+      totalNumberOfRounds: 6,
     };
 
     const result = generateFirstRound(state);
@@ -103,6 +105,7 @@ describe("generateFirstRound - odd number of players", () => {
       players,
       matches: [],
       byes: [],
+      totalNumberOfRounds: 6,
     };
 
     const result = generateFirstRound(state);
