@@ -1,5 +1,5 @@
 import { POINTS_PER_WIN } from "../constants";
-import { Bracket } from "./Bracket";
+import { createInitialBracketSubgroups } from "./createInitialBracketSubgroups";
 import type { Bye, calculatePairings, FloatInfo, Match } from "./externalTypes";
 import { mapToInternalPlayers } from "./mapToInternalPlayers";
 import { ScoreGroups } from "./ScoreGroup";
@@ -29,11 +29,11 @@ export const generateOtherRound: calculatePairings = (state) => {
   const nextScoreGroup = scoreGroups.getNextScoreGroup();
 
   if (nextScoreGroup) {
-    const bracket = new Bracket(
+    const bracket = createInitialBracketSubgroups(
       nextScoreGroup.players.map((player) => playersDict[player]!),
       [],
-      totalNumberOfRounds * POINTS_PER_WIN,
-      totalNumberOfRounds == round,
+      // totalNumberOfRounds * POINTS_PER_WIN,
+      // totalNumberOfRounds == round,
     );
   }
 
