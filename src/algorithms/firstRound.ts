@@ -1,27 +1,19 @@
 import { chunk, first, isEmpty, orderBy, range } from "lodash-es";
 
 import {
-  type Bye,
   Color,
+  type Bye,
   type FloatInfo,
   type calculatePairings,
   type Pairing,
   type Player,
 } from "./types";
-
-/* ---------- helpers ---------- */
+import { getRandomColor, isOdd, oppositeColor } from "./utils";
 
 const sortPlayers = (players: Player[]) =>
   orderBy(players, [(p) => p.elo ?? 0, "id"], ["desc", "asc"]);
 
-const isOdd = (count: number) => count % 2 === 1;
-
-const getRandomColor = () => (Math.random() < 0.5 ? Color.WHITE : Color.BLACK);
-
-const oppositeColor = (colour: Color) =>
-  colour === Color.WHITE ? Color.BLACK : Color.WHITE;
-
-const pairColourForTop = (initialColour: Color, pairingNumber: number) =>
+const pairColorForTop = (initialColour: Color, pairingNumber: number) =>
   isOdd(pairingNumber) ? initialColour : oppositeColor(initialColour);
 
 const createPairing = (
@@ -34,8 +26,6 @@ const createPairing = (
   black: topColour === Color.WHITE ? bottom.id : top.id,
   round,
 });
-
-/* ---------- main ---------- */
 
 export const generateFirstRound: calculatePairings = (state) => {
   const { round, players } = state;
@@ -76,7 +66,7 @@ export const generateFirstRound: calculatePairings = (state) => {
       throw new Error("Mismatched pairing - missing player.");
     }
 
-    const topColour = pairColourForTop(initialColour, pairingNumber);
+    const topColour = pairColorForTop(initialColour, pairingNumber);
 
     pairings.push(createPairing(top, bottom, topColour, round));
   });
