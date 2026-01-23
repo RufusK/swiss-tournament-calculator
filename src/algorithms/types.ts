@@ -1,7 +1,4 @@
-export type calculatePairings = (
-  state: TournamentState,
-  constraints: PairingConstraints
-) => PairingResult;
+export type calculatePairings = (state: TournamentState) => PairingResult;
 
 export type PlayerId = string;
 export type Score = number;
@@ -55,11 +52,4 @@ export interface Bye {
 export interface ScoreGroup {
   score: Score;
   players: PlayerId[];
-}
-
-export interface PairingConstraints {
-  noRepeatOpponents: boolean;
-  maxColorImbalance: number; // usually 2
-  minimizeColorDifference: boolean;
-  allowFloating: boolean;
 }

@@ -28,7 +28,7 @@ const createPairing = (
   top: Player,
   bottom: Player,
   topColour: Color,
-  round: number
+  round: number,
 ): Pairing => ({
   white: topColour === Color.WHITE ? top.id : bottom.id,
   black: topColour === Color.WHITE ? bottom.id : top.id,
@@ -37,7 +37,7 @@ const createPairing = (
 
 /* ---------- main ---------- */
 
-export const generateFirstRound: calculatePairings = (state, _constraints) => {
+export const generateFirstRound: calculatePairings = (state) => {
   const { round, players } = state;
 
   if (round !== 1) {

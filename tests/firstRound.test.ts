@@ -1,17 +1,6 @@
-import { describe, it, expect } from "vitest";
-import type {
-  TournamentState,
-  PairingConstraints,
-  Player,
-} from "../src/algorithms/types";
+import { describe, it, expect } from "bun:test";
+import type { TournamentState, Player } from "../src/algorithms/types";
 import { generateFirstRound } from "../src/algorithms/firstRound";
-
-const constraints: PairingConstraints = {
-  allowFloating: true,
-  maxColorImbalance: 2,
-  minimizeColorDifference: true,
-  noRepeatOpponents: true,
-};
 
 describe("generateSwissPairings - First Round", () => {
   it("should generate pairings for first round with even number of players", () => {
@@ -59,7 +48,7 @@ describe("generateSwissPairings - First Round", () => {
       round: 1,
     };
 
-    const result = generateFirstRound(state, constraints);
+    const result = generateFirstRound(state);
 
     expect(result.pairings).toHaveLength(2);
     expect(result.byes).toHaveLength(0);
@@ -106,7 +95,7 @@ describe("generateFirstRound - odd number of players", () => {
       byes: [],
     };
 
-    const result = generateFirstRound(state, constraints);
+    const result = generateFirstRound(state);
 
     expect(result.pairings).toHaveLength(1);
     expect(result.byes).toHaveLength(1);
@@ -176,7 +165,7 @@ describe("generateFirstRound - odd number of players", () => {
       byes: [],
     };
 
-    const result = generateFirstRound(state, constraints);
+    const result = generateFirstRound(state);
 
     expect(result.pairings).toHaveLength(2);
     expect(result.byes).toHaveLength(1);
