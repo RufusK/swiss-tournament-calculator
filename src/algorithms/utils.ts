@@ -24,5 +24,5 @@ For pairings purposes only, the players are ranked in order of, respectively
 1.2.2      TPN (in ascending order)
 the id acts as a TPN in our case
 */
-export const orderPlayersByScoreAndId = (players: InternalPlayer[]) =>
+export const sortPlayersByScoreAndId = (players: InternalPlayer[]) =>
   orderBy(players, [(p) => p.score, (p) => p.id], ["desc", "asc"]);

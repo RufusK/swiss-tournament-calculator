@@ -1,4 +1,6 @@
+import { chunk, every, slice, split, take } from "lodash-es";
 import type { InternalPlayer } from "./InternalPlayer";
+import { sortPlayersByScoreAndId } from "./utils";
 
 export class Bracket {
   // 3.1.1      M0 is the number of MDP(s) coming from the previous bracket. It may be zero.
@@ -30,5 +32,26 @@ export class Bracket {
     } else {
       this.MaxPairs = Math.floor((residents.length + downFloaters.length) / 2);
     }
+
+    this.M1 = Math.min(this.M0, this.MaxPairs);
+  }
+
+  public calculatePairings(): number {
+    let s1: InternalPlayer[] = [];
+    let s2: InternalPlayer[] = [];
+
+    var sortedPlayers = sortPlayersByScoreAndId(this.players);
+    var isHomogeneous = sortedPlayers.every(
+      (player) => player.score === sortedPlayers[0]!.score,
+    );
+
+    if (isHomogeneous) {
+      s1 = slice(sortedPlayers, 0, this.MaxPairs);
+      s2 = slice(sortedPlayers, this.MaxPairs, sortedPlayers.length);
+    } else {
+      s1 = slice(sortedPlayers, 0, this.M1);
+      s2 = slice(sortedPlayers, this.M1, sortedPlayers.length);
+    }
+    return 0;
   }
 }
