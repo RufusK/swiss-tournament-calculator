@@ -1,4 +1,4 @@
-import { chunk, first, isEmpty, orderBy, range } from "lodash-es";
+import { chunk, first, isEmpty, range } from "lodash-es";
 
 import {
   Color,
@@ -7,7 +7,7 @@ import {
   type calculatePairings,
   type Match,
   type Player,
-} from "./externalTypes";
+} from "../types/externalTypes";
 import {
   getRandomColor,
   isOdd,

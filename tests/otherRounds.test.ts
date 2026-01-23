@@ -1,10 +1,7 @@
 import { expect, describe, it } from "bun:test";
 
 import { generateOtherRound } from "../src/algorithms/otherRounds";
-import {
-  MatchResult,
-  type TournamentState,
-} from "../src/algorithms/externalTypes";
+import { MatchResult, type TournamentState } from "../src/types/externalTypes";
 
 describe("generateSwissPairings - First Round", () => {
   it("should generate pairings for first round with even number of players", () => {

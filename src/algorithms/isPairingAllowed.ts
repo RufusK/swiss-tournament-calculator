@@ -1,5 +1,4 @@
-import type { InternalPlayer } from "./InternalPlayer";
-import { ColorPreference } from "./internalTypes";
+import { ColorPreference, type InternalPlayer } from "../types/internalTypes";
 
 export function assessPairing(
   player1: InternalPlayer,
@@ -10,7 +9,7 @@ export function assessPairing(
   // ABSOLUTE CRITERIA
   //
   // 2.1.1 [C1] Two participants shall not play against each other more than once
-  if (player1.hadOpponent(player2)) {
+  if (player1.opponents.includes(player2.id)) {
     return false;
   }
 

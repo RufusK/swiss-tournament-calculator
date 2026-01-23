@@ -1,7 +1,7 @@
 import { orderBy } from "lodash-es";
 import { POINTS_PER_WIN } from "../constants";
-import { Color, type Player } from "./externalTypes";
-import type { InternalPlayer } from "./internalTypes";
+import { Color, type Player } from "../types/externalTypes";
+import type { InternalPlayer } from "../types/internalTypes";
 
 export const isOdd = (count: number) => count % 2 === 1;
 

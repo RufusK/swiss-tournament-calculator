@@ -1,5 +1,5 @@
 import { orderBy } from "lodash-es";
-import type { PlayerId } from "./externalTypes";
+import type { PlayerId } from "../types/externalTypes";
 
 export class ScoreGroups {
   private _scoreGroups: ScoreGroup[];

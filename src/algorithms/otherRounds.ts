@@ -1,6 +1,11 @@
 import { POINTS_PER_WIN } from "../constants";
 import { createInitialBracketSubgroups } from "./createInitialBracketSubgroups";
-import type { Bye, calculatePairings, FloatInfo, Match } from "./externalTypes";
+import type {
+  Bye,
+  calculatePairings,
+  FloatInfo,
+  Match,
+} from "../types/externalTypes";
 import { mapToInternalPlayers } from "./mapToInternalPlayers";
 import { ScoreGroups } from "./ScoreGroup";
 import { keyBy } from "lodash-es";

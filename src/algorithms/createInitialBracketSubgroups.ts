@@ -1,6 +1,6 @@
 import { slice } from "lodash-es";
 import { sortPlayersByScoreAndId } from "./utils";
-import type { InternalPlayer } from "./internalTypes";
+import type { InternalPlayer } from "../types/internalTypes";
 
 export function createInitialBracketSubgroups(
   residents: InternalPlayer[],

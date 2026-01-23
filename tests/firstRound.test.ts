@@ -1,5 +1,5 @@
 import { describe, it, expect } from "bun:test";
-import type { TournamentState, Player } from "../src/algorithms/externalTypes";
+import type { TournamentState, Player } from "../src/types/externalTypes";
 import { generateFirstRound } from "../src/algorithms/firstRound";
 
 describe("generateSwissPairings - First Round", () => {

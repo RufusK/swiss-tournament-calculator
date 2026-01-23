@@ -1,3 +1,3 @@
 export { calculateSwissPairings } from "./algorithms/calculateSwissPairings";
 
-export * from "./algorithms/externalTypes";
+export * from "./types/externalTypes";

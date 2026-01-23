@@ -7,8 +7,8 @@ import {
   type Match,
   type Player,
   type PlayerId,
-} from "./externalTypes";
-import { ColorPreference, type InternalPlayer } from "./internalTypes";
+} from "../types/externalTypes";
+import { ColorPreference, type InternalPlayer } from "../types/internalTypes";
 
 export function mapToInternalPlayers(
   players: Player[],
