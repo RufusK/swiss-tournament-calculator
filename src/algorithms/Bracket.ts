@@ -1,6 +1,6 @@
 import { chunk, every, slice, split, take } from "lodash-es";
-import type { InternalPlayer } from "./InternalPlayer";
 import { sortPlayersByScoreAndId } from "./utils";
+import type { InternalPlayer } from "./internalTypes";
 
 export class Bracket {
   // 3.1.1      M0 is the number of MDP(s) coming from the previous bracket. It may be zero.
