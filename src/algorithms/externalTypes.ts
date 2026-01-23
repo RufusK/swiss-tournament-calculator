@@ -2,31 +2,34 @@ export type calculatePairings = (state: TournamentState) => PairingResult;
 
 export type PlayerId = string;
 export type Score = number;
+
 export enum Color {
   WHITE,
   BLACK,
   NONE,
 }
 
+export enum MatchResult {
+  WHITE_WIN,
+  BLACK_WIN,
+  DRAW,
+}
+
 export interface Player {
   id: PlayerId;
   elo?: number;
-  score: number;
-  opponents: PlayerId[]; // in order of rounds
-  colors: Color[]; // parallel to opponents
-  colorBalance: number; // white = +1, black = -1
-  hadBye: boolean;
 }
 
 export interface TournamentState {
-  round: number;
+  nextRound: number;
+  totalNumberOfRounds: number;
   players: Player[];
-  pairings: Pairing[];
+  matches: Match[];
   byes: Bye[];
 }
 
 export interface PairingResult {
-  pairings: Pairing[];
+  pairings: Match[];
   byes: Bye[];
   floats: FloatInfo[];
 }
@@ -38,18 +41,14 @@ export interface FloatInfo {
   direction: "up" | "down";
 }
 
-export interface Pairing {
+export interface Match {
   white: PlayerId;
   black: PlayerId;
   round: number;
+  result?: MatchResult; // null if not finished
 }
 
 export interface Bye {
   player: PlayerId;
   round: number;
-}
-
-export interface ScoreGroup {
-  score: Score;
-  players: PlayerId[];
 }

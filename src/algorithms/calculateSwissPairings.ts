@@ -1,11 +1,11 @@
 import { generateFirstRound } from "./firstRound";
-import type { calculatePairings, PairingResult } from "./types";
+import type { calculatePairings, PairingResult } from "./externalTypes";
 
 export const calculateSwissPairings: calculatePairings = (state) => {
   // Placeholder implementation
   // Actual Swiss pairing logic would go here
 
-  if (state.round === 1) {
+  if (state.nextRound === 1) {
     return generateFirstRound(state);
   }
 

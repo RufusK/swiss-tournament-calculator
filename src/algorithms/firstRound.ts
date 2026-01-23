@@ -5,13 +5,15 @@ import {
   type Bye,
   type FloatInfo,
   type calculatePairings,
-  type Pairing,
+  type Match,
   type Player,
-} from "./types";
-import { getRandomColor, isOdd, oppositeColor } from "./utils";
-
-const sortPlayers = (players: Player[]) =>
-  orderBy(players, [(p) => p.elo ?? 0, "id"], ["desc", "asc"]);
+} from "./externalTypes";
+import {
+  getRandomColor,
+  isOdd,
+  oppositeColor,
+  sortPlayersByEloAndId,
+} from "./utils";
 
 const pairColorForTop = (initialColour: Color, pairingNumber: number) =>
   isOdd(pairingNumber) ? initialColour : oppositeColor(initialColour);
@@ -21,24 +23,24 @@ const createPairing = (
   bottom: Player,
   topColour: Color,
   round: number,
-): Pairing => ({
+): Match => ({
   white: topColour === Color.WHITE ? top.id : bottom.id,
   black: topColour === Color.WHITE ? bottom.id : top.id,
   round,
 });
 
 export const generateFirstRound: calculatePairings = (state) => {
-  const { round, players } = state;
+  const { nextRound: round, players } = state;
 
   if (round !== 1) {
     throw new Error("This implementation only supports round 1.");
   }
 
-  const pairings: Pairing[] = [];
+  const pairings: Match[] = [];
   const byes: Bye[] = [];
   const floats: FloatInfo[] = [];
 
-  const sortedPlayers = sortPlayers(players);
+  const sortedPlayers = sortPlayersByEloAndId(players);
 
   const half = Math.floor(sortedPlayers.length / 2);
   const [topHalf, bottomHalf, remaining] = chunk(sortedPlayers, half);

@@ -1,5 +1,5 @@
 import { describe, it, expect } from "bun:test";
-import type { TournamentState, Player } from "../src/algorithms/types";
+import type { TournamentState, Player } from "../src/algorithms/externalTypes";
 import { generateFirstRound } from "../src/algorithms/firstRound";
 
 describe("generateSwissPairings - First Round", () => {
@@ -9,43 +9,23 @@ describe("generateSwissPairings - First Round", () => {
         {
           id: "1",
           elo: 1600,
-          colorBalance: 0,
-          score: 0,
-          opponents: [],
-          colors: [],
-          hadBye: false,
         },
         {
           id: "2",
           elo: 1550,
-          colorBalance: 0,
-          score: 0,
-          opponents: [],
-          colors: [],
-          hadBye: false,
         },
         {
           id: "3",
           elo: 1500,
-          colorBalance: 0,
-          score: 0,
-          opponents: [],
-          colors: [],
-          hadBye: false,
         },
         {
           id: "4",
           elo: 1450,
-          colorBalance: 0,
-          score: 0,
-          opponents: [],
-          colors: [],
-          hadBye: false,
         },
       ],
-      pairings: [],
+      matches: [],
       byes: [],
-      round: 1,
+      nextRound: 1,
     };
 
     const result = generateFirstRound(state);
@@ -62,36 +42,21 @@ describe("generateFirstRound - odd number of players", () => {
       {
         id: "1",
         elo: 1800,
-        score: 0,
-        opponents: [],
-        colors: [],
-        colorBalance: 0,
-        hadBye: false,
       },
       {
         id: "2",
         elo: 1700,
-        score: 0,
-        opponents: [],
-        colors: [],
-        colorBalance: 0,
-        hadBye: false,
       },
       {
         id: "3",
         elo: 1600,
-        score: 0,
-        opponents: [],
-        colors: [],
-        colorBalance: 0,
-        hadBye: false,
       },
     ];
 
     const state: TournamentState = {
-      round: 1,
+      nextRound: 1,
       players,
-      pairings: [],
+      matches: [],
       byes: [],
     };
 
@@ -115,53 +80,28 @@ describe("generateFirstRound - odd number of players", () => {
       {
         id: "1",
         elo: 1800,
-        score: 0,
-        opponents: [],
-        colors: [],
-        colorBalance: 0,
-        hadBye: false,
       },
       {
         id: "2",
         elo: 1700,
-        score: 0,
-        opponents: [],
-        colors: [],
-        colorBalance: 0,
-        hadBye: false,
       },
       {
         id: "u1",
-        score: 0,
-        opponents: [],
-        colors: [],
-        colorBalance: 0,
-        hadBye: false,
       }, // unrated
       {
         id: "3",
         elo: 1600,
-        score: 0,
-        opponents: [],
-        colors: [],
-        colorBalance: 0,
-        hadBye: false,
       },
       {
         id: "4",
         elo: 1500,
-        score: 0,
-        opponents: [],
-        colors: [],
-        colorBalance: 0,
-        hadBye: false,
       },
     ];
 
     const state: TournamentState = {
-      round: 1,
+      nextRound: 1,
       players,
-      pairings: [],
+      matches: [],
       byes: [],
     };
 
