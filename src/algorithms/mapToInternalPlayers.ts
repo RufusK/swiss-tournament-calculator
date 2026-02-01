@@ -38,7 +38,7 @@ export function mapToInternalPlayers(
     const internalPlayer: InternalPlayer = {
       id: player.id,
       score: player.score,
-      colorDifference: player.colorDifference,
+      // colorDifference: player.colorDifference,
       colorPreference: player.getColorPreference(),
       opponents: player.getOpponents(),
       hadBye: player.hadBye(),

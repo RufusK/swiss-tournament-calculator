@@ -13,7 +13,7 @@ export enum ColorPreference {
 export interface InternalPlayer {
   id: PlayerId;
   score: number;
-  colorDifference: number;
+  // colorDifference: number;
   colorPreference: ColorPreference;
   opponents: PlayerId[];
   hadBye: boolean;

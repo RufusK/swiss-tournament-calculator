@@ -1,6 +1,8 @@
-import { slice } from "lodash-es";
+import { range, slice } from "lodash-es";
 import { sortPlayersByScoreAndId } from "./utils";
 import type { InternalPlayer } from "../types/internalTypes";
+
+type Subgroup = InternalPlayer[];
 
 export function createInitialBracketSubgroups(
   residents: InternalPlayer[],
@@ -50,4 +52,30 @@ export function createInitialBracketSubgroups(
     S1,
     S2,
   };
+}
+
+export function createCandidatePairings(
+  M0: number,
+  M1: number,
+  MAX_PAIRS: number,
+  IS_HOMOGENEOUS: boolean,
+  S1: Subgroup,
+  S2: Subgroup,
+) {
+  // 3.3.1 S1 players are tentatively paired with S2 players
+  const pairs: [InternalPlayer, InternalPlayer][] = [];
+
+  range(MAX_PAIRS).forEach((i) => {
+    pairs.push([S1[i]!, S2[i]!]);
+  });
+
+  // 3.3.3 In a heterogeneous bracket: the pairs formed as explained in Article 3.3.1 match M1 MDPs from S1
+  // with M1 resident players from S2. This is called an MDP-Pairing.
+  // The remaining resident players (if any) give rise to the remainder (see Article 1.3),
+  // which is then paired with the same rules used for a homogeneous bracket.
+  if (!IS_HOMOGENEOUS) {
+    const remainder = slice(S2, M1);
+  }
+
+  return pairs;
 }
