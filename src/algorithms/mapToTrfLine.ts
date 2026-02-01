@@ -23,7 +23,7 @@ export function mapToTrfPlayerLine(player: InternalPlayer): string {
 
   t += padLeft(player.score.toFixed(1), 6);
 
-  t += padLeft(player.id.toString(), 4);
+  t += padLeft("", 4);
 
   player.matches.forEach((match) => {
     t += padLeft(match.opponentId.toString(), 5);
