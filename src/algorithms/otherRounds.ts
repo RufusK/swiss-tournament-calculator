@@ -1,32 +1,50 @@
 import type {
   ResultBye,
-  calculatePairings,
   ResultPairing,
+  TournamentState,
 } from "../types/externalTypes";
 import { mapToInternalPlayers } from "./mapToInternalPlayers";
+import { mapToTrf } from "./mapToTrfLine";
+import BbpPairingModule from "../bbpPairing/bbpPairing";
 
-export const generateOtherRound: calculatePairings = (state) => {
+export const generateOtherRound = async (state: TournamentState) => {
   const {
-    nextRound: round,
     matches: pastMatches,
     players: givenPlayers,
     byes: pastByes,
     totalNumberOfRounds,
   } = state;
 
-  if (round == 1) {
-    throw new Error("This implementation doesnt support round 1.");
-  }
-
   const players = mapToInternalPlayers(givenPlayers, pastMatches, pastByes);
 
-  // create pairings
+  const trf = mapToTrf(totalNumberOfRounds, players);
+
+  const pairingEngine = await BbpPairingModule();
+
+  const stringResult = pairingEngine.pairing(trf);
+
+  const result: ([number, number] | [number])[] = JSON.parse(stringResult);
+
+  console.log(typeof result);
+
   const pairings: ResultPairing[] = [];
   const byes: ResultBye[] = [];
 
+  result.forEach(([player1, player2]) => {
+    if (player2) {
+      pairings.push({
+        black: player1,
+        white: player2,
+      });
+    } else {
+      byes.push({
+        player: player1,
+      });
+    }
+  });
+
   return {
-    pairings: [],
-    byes: [],
-    roundNumber: round,
+    pairings,
+    byes,
   };
 };

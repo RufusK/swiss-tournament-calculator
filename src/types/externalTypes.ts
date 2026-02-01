@@ -1,4 +1,4 @@
-export type calculatePairings = (state: TournamentState) => Result;
+export type calculatePairings = (state: TournamentState) => Promise<Result>;
 
 export type PlayerId = number;
 
@@ -25,11 +25,10 @@ export enum ByeMatchResult {
 
 export interface Player {
   id: PlayerId;
-  elo: number;
+  // currentRank: number;
 }
 
 export interface TournamentState {
-  nextRound: number;
   totalNumberOfRounds: number;
   players: Player[];
   matches: Match[];
@@ -51,7 +50,6 @@ export interface Bye {
 
 // RESULT
 export interface Result {
-  roundNumber: number;
   pairings: ResultPairing[];
   byes: ResultBye[];
 }

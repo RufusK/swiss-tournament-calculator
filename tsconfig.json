@@ -18,6 +18,7 @@
 
     "declaration": true,
     "isolatedDeclarations": false,
+    "allowJs": true,
 
     "noUnusedLocals": false,
     "noUnusedParameters": false,

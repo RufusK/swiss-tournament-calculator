@@ -2,13 +2,15 @@ import { generateFirstRound } from "./firstRound";
 import type { calculatePairings, Result } from "../types/externalTypes";
 import { generateOtherRound } from "./otherRounds";
 
-export const calculateSwissPairings: calculatePairings = (state) => {
+export const calculateSwissPairings: calculatePairings = async (state) => {
   // Placeholder implementation
   // Actual Swiss pairing logic would go here
 
-  if (state.nextRound === 1) {
+  const isFirstRound = state.matches.length == 0 && state.byes.length == 0;
+
+  if (isFirstRound) {
     return generateFirstRound(state);
   }
 
-  return generateOtherRound(state);
+  return await generateOtherRound(state);
 };

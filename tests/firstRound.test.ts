@@ -8,24 +8,19 @@ describe("generateSwissPairings - First Round", () => {
       players: [
         {
           id: 1,
-          elo: 1600,
         },
         {
           id: 2,
-          elo: 1550,
         },
         {
           id: 3,
-          elo: 1500,
         },
         {
           id: 4,
-          elo: 1450,
         },
       ],
       matches: [],
       byes: [],
-      nextRound: 1,
       totalNumberOfRounds: 6,
     };
 
@@ -37,24 +32,20 @@ describe("generateSwissPairings - First Round", () => {
 });
 
 describe("generateFirstRound - odd number of players", () => {
-  it("assigns a bye to the lowest-rated player when all players are rated", () => {
+  it("assigns a bye to the lowest-rated player which is always the last in the list", () => {
     const players: Player[] = [
       {
         id: 1,
-        elo: 1800,
       },
       {
         id: 2,
-        elo: 1700,
       },
       {
         id: 3,
-        elo: 1600,
       },
     ];
 
     const state: TournamentState = {
-      nextRound: 1,
       players,
       matches: [],
       byes: [],

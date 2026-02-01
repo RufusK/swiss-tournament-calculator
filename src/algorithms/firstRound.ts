@@ -3,17 +3,11 @@ import { chunk, first, isEmpty, range } from "lodash-es";
 import {
   Color,
   type ResultBye,
-  type calculatePairings,
-  type Match,
   type Player,
   type ResultPairing,
+  type TournamentState,
 } from "../types/externalTypes";
-import {
-  getRandomColor,
-  isOdd,
-  oppositeColor,
-  sortPlayersByEloAndId,
-} from "./utils";
+import { getRandomColor, isOdd, oppositeColor, sortPlayersById } from "./utils";
 
 const pairColorForTop = (initialColour: Color, pairingNumber: number) =>
   isOdd(pairingNumber) ? initialColour : oppositeColor(initialColour);
@@ -28,17 +22,13 @@ const createPairing = (
   black: topColour === Color.WHITE ? bottom.id : top.id,
 });
 
-export const generateFirstRound: calculatePairings = (state) => {
-  const { nextRound: round, players } = state;
-
-  if (round !== 1) {
-    throw new Error("This implementation only supports round 1.");
-  }
+export const generateFirstRound = (state: TournamentState) => {
+  const { players } = state;
 
   const pairings: ResultPairing[] = [];
   const byes: ResultBye[] = [];
 
-  const sortedPlayers = sortPlayersByEloAndId(players);
+  const sortedPlayers = sortPlayersById(players);
 
   const half = Math.floor(sortedPlayers.length / 2);
   const [topHalf, bottomHalf, remaining] = chunk(sortedPlayers, half);
@@ -67,7 +57,7 @@ export const generateFirstRound: calculatePairings = (state) => {
 
     const topColour = pairColorForTop(initialColour, pairingNumber);
 
-    pairings.push(createPairing(top, bottom, topColour, round));
+    pairings.push(createPairing(top, bottom, topColour, 1));
   });
 
   return { pairings, byes, roundNumber: 1 };
