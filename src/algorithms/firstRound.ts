@@ -2,11 +2,11 @@ import { chunk, first, isEmpty, range } from "lodash-es";
 
 import {
   Color,
-  type Bye,
-  type FloatInfo,
+  type ResultBye,
   type calculatePairings,
   type Match,
   type Player,
+  type ResultPairing,
 } from "../types/externalTypes";
 import {
   getRandomColor,
@@ -23,10 +23,9 @@ const createPairing = (
   bottom: Player,
   topColour: Color,
   round: number,
-): Match => ({
+): ResultPairing => ({
   white: topColour === Color.WHITE ? top.id : bottom.id,
   black: topColour === Color.WHITE ? bottom.id : top.id,
-  round,
 });
 
 export const generateFirstRound: calculatePairings = (state) => {
@@ -36,9 +35,8 @@ export const generateFirstRound: calculatePairings = (state) => {
     throw new Error("This implementation only supports round 1.");
   }
 
-  const pairings: Match[] = [];
-  const byes: Bye[] = [];
-  const floats: FloatInfo[] = [];
+  const pairings: ResultPairing[] = [];
+  const byes: ResultBye[] = [];
 
   const sortedPlayers = sortPlayersByEloAndId(players);
 
@@ -52,7 +50,6 @@ export const generateFirstRound: calculatePairings = (state) => {
   if (!isEmpty(remaining)) {
     byes.push({
       player: first(remaining)?.id!,
-      round,
     });
   }
 
@@ -73,5 +70,5 @@ export const generateFirstRound: calculatePairings = (state) => {
     pairings.push(createPairing(top, bottom, topColour, round));
   });
 
-  return { pairings, byes, floats };
+  return { pairings, byes, roundNumber: 1 };
 };

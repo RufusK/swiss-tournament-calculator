@@ -1,14 +1,9 @@
-import { POINTS_PER_WIN } from "../constants";
-import { createInitialBracketSubgroups } from "./createInitialBracketSubgroups";
 import type {
-  Bye,
+  ResultBye,
   calculatePairings,
-  FloatInfo,
-  Match,
+  ResultPairing,
 } from "../types/externalTypes";
 import { mapToInternalPlayers } from "./mapToInternalPlayers";
-import { ScoreGroups } from "./ScoreGroup";
-import { keyBy } from "lodash-es";
 
 export const generateOtherRound: calculatePairings = (state) => {
   const {
@@ -24,32 +19,14 @@ export const generateOtherRound: calculatePairings = (state) => {
   }
 
   const players = mapToInternalPlayers(givenPlayers, pastMatches, pastByes);
-  const playersDict = keyBy(players, (player) => player.id);
-
-  // create scoregroups
-  const scoreGroups = new ScoreGroups(
-    players.map((player) => ({ id: player.id, score: player.score })),
-  );
-
-  const nextScoreGroup = scoreGroups.getNextScoreGroup();
-
-  if (nextScoreGroup) {
-    const bracket = createInitialBracketSubgroups(
-      nextScoreGroup.players.map((player) => playersDict[player]!),
-      [],
-      // totalNumberOfRounds * POINTS_PER_WIN,
-      // totalNumberOfRounds == round,
-    );
-  }
 
   // create pairings
-  const pairings: Match[] = [];
-  const byes: Bye[] = [];
-  const floats: FloatInfo[] = [];
+  const pairings: ResultPairing[] = [];
+  const byes: ResultBye[] = [];
 
   return {
     pairings: [],
     byes: [],
-    floats: [],
+    roundNumber: round,
   };
 };

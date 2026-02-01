@@ -1,5 +1,6 @@
 import { generateFirstRound } from "./firstRound";
-import type { calculatePairings, PairingResult } from "../types/externalTypes";
+import type { calculatePairings, Result } from "../types/externalTypes";
+import { generateOtherRound } from "./otherRounds";
 
 export const calculateSwissPairings: calculatePairings = (state) => {
   // Placeholder implementation
@@ -9,11 +10,5 @@ export const calculateSwissPairings: calculatePairings = (state) => {
     return generateFirstRound(state);
   }
 
-  const pairings: PairingResult = {
-    pairings: [],
-    byes: [],
-    floats: [],
-  };
-
-  return pairings;
+  return generateOtherRound(state);
 };

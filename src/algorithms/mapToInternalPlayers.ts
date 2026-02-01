@@ -3,10 +3,11 @@ import { POINTS_PER_WIN, POINTS_PER_DRAW } from "../constants";
 import {
   Color,
   MatchResult,
-  type Bye,
+  type ResultBye,
   type Match,
   type Player,
   type PlayerId,
+  type Bye,
 } from "../types/externalTypes";
 import { ColorPreference, type InternalPlayer } from "../types/internalTypes";
 
@@ -52,7 +53,7 @@ class CalculationPlayer {
   public colorDifference = 0;
   public colorPreference = ColorPreference.NONE;
   private _playedMatches: Match[] = [];
-  private _byes: Bye[] = [];
+  private _byes: ResultBye[] = [];
 
   constructor(public id: PlayerId) {}
 
@@ -100,7 +101,7 @@ class CalculationPlayer {
     }
   }
 
-  addBye(bye: Bye) {
+  addBye(bye: ResultBye) {
     this._byes.push(bye);
     this.score += 1;
   }
