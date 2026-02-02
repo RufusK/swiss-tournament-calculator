@@ -1,6 +1,6 @@
 {
   "name": "swiss-tournament-calculator",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "FIDE conform generation of pairings for Dutch Swiss Tournaments. Usually used for chess tournaments.",
   "license": "MIT",
   "files": [
